@@ -22,8 +22,6 @@ export const getEbikeComparer = async () => {
   const bikes = await fetchBikeData();
 
   const bikePoints = bikes.map(eBikePoint);
-  console.log(bikePoints.slice(0, 10));
-  console.log(bikes.slice(0, 10));
   const tree = createKDTree(bikePoints);
   return tree;
 };
