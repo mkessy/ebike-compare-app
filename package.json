@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/material": "^5.0.6",
+    "@mui/styled-engine-sc": "^5.0.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -42,7 +44,9 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.176",
+    "@types/styled-components": "^5.1.15",
     "lodash": "^4.17.21",
-    "static-kdtree": "^1.0.2"
+    "static-kdtree": "^1.0.2",
+    "styled-components": "^5.3.3"
   }
 }
