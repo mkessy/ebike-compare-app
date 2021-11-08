@@ -52,6 +52,7 @@ export interface Ebike {
 
 export type GlobalContextType = {
   bikes: Ebike[];
+  isLoading: boolean;
 };
 
 const CATEGORY_NUMBER_MAP = {

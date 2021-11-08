@@ -6,7 +6,7 @@ const Search: React.FunctionComponent = () => {
 
   return (
     <Box>
-      <TextField onChange={() => {}} />
+      <TextField variant="filled" fullWidth onChange={() => {}} />
     </Box>
   );
 };

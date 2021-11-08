@@ -3,6 +3,7 @@ import { EbikeForm } from "./EbikeForm";
 import { EbikeCardGroup } from "./EbikeCardGroup";
 import { Header } from "./Header";
 import { Container, Grid } from "@mui/material";
+import SearchCompareTabs from "./SearchCompareTabs";
 
 export const HomePageGrid = () => {
   return (
@@ -10,7 +11,7 @@ export const HomePageGrid = () => {
       <Header />
       <Grid container direction="row" columnSpacing={10}>
         <Grid item container direction="row" xs={2}>
-          <EbikeForm />
+          <SearchCompareTabs />
         </Grid>
         <Grid item container xs={10}>
           <EbikeCardGroup />
