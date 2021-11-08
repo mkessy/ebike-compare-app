@@ -8,7 +8,7 @@ export const HomePageGrid = () => {
   return (
     <Container maxWidth={"lg"}>
       <Header />
-      <Grid container direction="row" columnSpacing={5}>
+      <Grid container direction="row" columnSpacing={10}>
         <Grid item container direction="row" xs={2}>
           <EbikeForm />
         </Grid>

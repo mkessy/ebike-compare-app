@@ -49,6 +49,11 @@ export interface Ebike {
     fenders: string;
   };
 }
+
+export type GlobalContextType = {
+  bikes: Ebike[];
+};
+
 const CATEGORY_NUMBER_MAP = {
   "fitness / racebike": 0,
   "folding / compact": 1,
