@@ -66,26 +66,7 @@ const EbikeCard = () => {
         <Typography variant="subtitle1" color="text.secondary">
           {testBike.modelBrand.manufacturer}
         </Typography>
-        <List dense>
-          <ListItem>
-            <ListItemText>Model Year </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>Price </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>Power </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>Category </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>Engine Position </ListItemText>
-          </ListItem>
-          <ListItem>
-            <ListItemText>Range </ListItemText>
-          </ListItem>
-        </List>
+        <List dense></List>
       </CardContent>
     </Card>
   );

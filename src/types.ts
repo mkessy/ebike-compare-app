@@ -49,10 +49,12 @@ export interface Ebike {
     fenders: string;
   };
 }
+export type Comparer = (bike: Ebike, k: number) => Ebike[];
 
 export type GlobalContextType = {
   bikes: Ebike[];
   isLoading: boolean;
+  comparer: Comparer | null;
 };
 
 const CATEGORY_NUMBER_MAP = {

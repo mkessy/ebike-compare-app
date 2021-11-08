@@ -1,6 +1,7 @@
 import createKDTree from "static-kdtree";
 import { Ebike, COMPARISON_PATHS } from "../types";
 import { get, isString } from "lodash";
+import { fetchBikeData } from "./fetchBikeData";
 
 const DEFAULT_VALUE = 999;
 
@@ -13,15 +14,9 @@ export const eBikePoint = (eBike: Ebike): (string | number)[] => {
   });
 };
 
-const fetchBikeData = async (): Promise<Ebike[]> => {
-  const bikes: Ebike[] = await (await fetch("bikes.json")).json();
-  return bikes;
-};
-
-export const getEbikeComparer = async () => {
-  const bikes = await fetchBikeData();
-
+export const getEbikeComparer = (bikes: Ebike[]) => {
   const bikePoints = bikes.map(eBikePoint);
   const tree = createKDTree(bikePoints);
-  return tree;
+  return (bike: Ebike, k: number): Ebike[] =>
+    tree.knn(eBikePoint(bike), k).map((index) => bikes[index]);
 };

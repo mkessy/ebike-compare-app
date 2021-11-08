@@ -1,20 +1,20 @@
 import React from "react";
 import { EbikeForm } from "./EbikeForm";
-import { EbikeCardGroup } from "./EbikeCardGroup";
+import { EbikeCardGroup, EbikeCompareContainer } from "./EbikeCardGroup";
 import { Header } from "./Header";
 import { Container, Grid } from "@mui/material";
 import SearchCompareTabs from "./SearchCompareTabs";
 
 export const HomePageGrid = () => {
   return (
-    <Container maxWidth={"lg"}>
+    <Container>
       <Header />
-      <Grid container direction="row" columnSpacing={10}>
-        <Grid item container direction="row" xs={2}>
+      <Grid container direction="row">
+        <Grid item container direction="column" xs={4}>
           <SearchCompareTabs />
         </Grid>
-        <Grid item container xs={10}>
-          <EbikeCardGroup />
+        <Grid item container xs={8}>
+          <EbikeCompareContainer />
         </Grid>
       </Grid>
     </Container>
