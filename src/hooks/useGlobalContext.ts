@@ -1,8 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import { createContext } from "react";
 import { GlobalContextType } from "../types";
 
 export const GlobalContext = createContext<GlobalContextType>({
-  bikes: [],
+  bikes: null,
   isLoading: true,
   comparer: null,
 });

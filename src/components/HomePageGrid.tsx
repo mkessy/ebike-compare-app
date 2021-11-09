@@ -1,16 +1,14 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState } from "react";
 import { EbikeForm } from "./EbikeForm";
 import { EbikeCompareContainer } from "./EbikeCardGroup";
 import { Header } from "./Header";
 import { Container, Grid } from "@mui/material";
 import SearchCompareTabs from "./SearchCompareTabs";
 import { Ebike } from "../types";
-import { GlobalContext } from "../hooks/useGlobalContext";
 
 export const HomePageGrid = () => {
   const [selectedTab, setSelectedTab] = useState<string>("search");
   const [selectedBike, setSelectedBike] = useState<Ebike | null>(null);
-  const { bikes, comparer } = useContext(GlobalContext);
 
   return (
     <Container>

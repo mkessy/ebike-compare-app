@@ -52,9 +52,9 @@ export interface Ebike {
 export type Comparer = (bike: Ebike, k: number) => Ebike[];
 
 export type GlobalContextType = {
-  bikes: Ebike[];
+  bikes: Ebike[] | null;
   isLoading: boolean;
-  comparer: any;
+  comparer: null | ((bike: Ebike, k: number) => Ebike[]);
 };
 
 const CATEGORY_NUMBER_MAP = {
@@ -92,11 +92,11 @@ export const STRING_PATH_TO_NUMBER = {
   "engine.enginePosition": ENGINE_POSITION_NUMBER_MAP,
 };
 
-export const FIELD_TITLES: Record<string, string> = {
-  priceRrp: "Price",
-  enginePower: "Power",
-  category: "Category",
-  enginePosition: "Engine Position",
-  range: "Range",
-  weight: "Weight",
-};
+export const FIELD_TITLES: Array<{ field: string; path: string }> = [
+  { field: "Price", path: "generalInfo.priceRrp" },
+  { field: "Power", path: "engine.enginePower" },
+  { field: "Category", path: "generalInfo.category" },
+  { field: "Engine Position", path: "engine.enginePosition" },
+  { field: "Range", path: "engine.range" },
+  { field: "Weight", path: "generalInfo.weight" },
+];
