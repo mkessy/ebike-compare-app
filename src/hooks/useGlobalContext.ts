@@ -1,10 +1,10 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { GlobalContextType } from "../types";
 
-const GlobalContext = createContext<GlobalContextType>({
+export const GlobalContext = createContext<GlobalContextType>({
   bikes: [],
   isLoading: true,
+  comparer: null,
 });
 GlobalContext.displayName = "E-bike Context: list of all e-bikes";
-export default GlobalContext;
 //export const useGlobalContext = () => useContext(GlobalContext);

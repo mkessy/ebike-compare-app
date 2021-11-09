@@ -1,18 +1,32 @@
 import { Grid } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import GlobalContext from "../hooks/useGlobalContext";
-import { getEbikeComparer } from "../lib/comparer";
-import { Ebike } from "../types";
+import { GlobalContext } from "../hooks/useGlobalContext";
+import { Comparer, Ebike } from "../types";
 import EbikeCard from "./EbikeCard";
 
 type EbikeCardGroupProps = {
-  bikes: Ebike[] | null;
+  bikeToCompare: Ebike | null;
 };
 
-export const EbikeCardGroup = ({ bikes }: EbikeCardGroupProps) => {
+export const EbikeCardGroup = ({ bikeToCompare }: EbikeCardGroupProps) => {
+  const [comparisons, setComparisons] = useState<Ebike[] | null>(null);
+  const comparer2 = useContext(GlobalContext).comparer;
+
+  if (comparer2) console.log(comparer2(bikeToCompare!, 10));
+  useEffect(() => {
+    bikeToCompare && comparer2 && setComparisons(comparer2(bikeToCompare, 10));
+  }, [comparer2, bikeToCompare]);
+
   return (
     <Grid item container direction="row" spacing={2}>
-      <Grid item>{bikes && bikes.map((bike) => bike.modelBrand.model)}</Grid>
+      {comparisons &&
+        comparisons.map((bike) => {
+          return (
+            <Grid item>
+              <EbikeCard bike={bike} />
+            </Grid>
+          );
+        })}
     </Grid>
   );
 };
@@ -24,12 +38,11 @@ export const EbikeCompareContainer = ({
   bikeToCompare,
 }: EbikeCompareContainerProps) => {
   const globalContext = useContext(GlobalContext);
-  const [comparisons, setComparisons] = useState<Ebike[] | null>(null);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const comparer = getEbikeComparer(globalContext.bikes);
     if (bikeToCompare) setComparisons(comparer(bikeToCompare, 10));
-  }, [globalContext, bikeToCompare]);
+  }, [globalContext, bikeToCompare]); */
 
-  return <EbikeCardGroup bikes={comparisons} />;
+  return <EbikeCardGroup bikeToCompare={bikeToCompare} />;
 };

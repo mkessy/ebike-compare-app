@@ -54,6 +54,7 @@ export type Comparer = (bike: Ebike, k: number) => Ebike[];
 export type GlobalContextType = {
   bikes: Ebike[];
   isLoading: boolean;
+  comparer: any;
 };
 
 const CATEGORY_NUMBER_MAP = {

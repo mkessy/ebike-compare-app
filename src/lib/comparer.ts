@@ -15,8 +15,9 @@ export const eBikePoint = (eBike: Ebike): (string | number)[] => {
 
 export const getEbikeComparer = (bikes: Ebike[]) => {
   const bikePoints = bikes.map(eBikePoint);
+  console.log("recreacting tree");
   const tree = createKDTree(bikePoints);
-  return function (bike: Ebike, k: number): Ebike[] {
+  return (bike: Ebike, k: number): Ebike[] => {
     return tree.knn(eBikePoint(bike), k).map((index) => bikes[index]);
   };
 };

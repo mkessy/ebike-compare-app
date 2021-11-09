@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useContext, useCallback } from "react";
-import GlobalContext from "../hooks/useGlobalContext";
+import { GlobalContext } from "../hooks/useGlobalContext";
 import {
   TextField,
   Box,
