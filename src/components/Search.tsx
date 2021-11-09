@@ -8,8 +8,13 @@ import {
   ListItemText,
   ListItemButton,
 } from "@mui/material";
+import { Ebike } from "../types";
 
-export const Search: React.FunctionComponent = () => {
+type SearchProps = {
+  setSelectedBike: (bike: Ebike | null) => void;
+};
+
+export const Search = ({ setSelectedBike }: SearchProps) => {
   const [search, setSearch] = useState("");
   const [selectedIdx, setSelectedIdx] = useState<null | number>(null);
   const bikes = useContext(GlobalContext).bikes;
@@ -25,19 +30,21 @@ export const Search: React.FunctionComponent = () => {
           model.toLowerCase().includes(search.toLowerCase())
         );
       })
-      .slice(0, 20);
+      .slice(0, 10);
   }, [bikes, search]);
 
   const handleClickSearchItem = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number
   ) => {
+    setSelectedBike(searchResults[index]);
     setSelectedIdx(index);
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
     setSelectedIdx(null);
+    setSelectedBike(null);
   };
 
   return (

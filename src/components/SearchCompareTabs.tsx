@@ -4,15 +4,24 @@ import { EbikeForm } from "./EbikeForm";
 import { Search } from "./Search";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import React from "react";
+import { Ebike } from "../types";
 
-const SearchCompareTabs = () => {
-  const [value, setValue] = React.useState("search");
+type SearchCompareProps = {
+  setSelectedTab: (selectedTab: string) => void;
+  setSelectedBike: (selectedBike: Ebike | null) => void;
+  selectedTab: string;
+};
 
+const SearchCompareTabs = ({
+  setSelectedTab,
+  setSelectedBike,
+  selectedTab,
+}: SearchCompareProps) => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+    setSelectedTab(newValue);
   };
   return (
-    <TabContext value={value}>
+    <TabContext value={selectedTab}>
       <TabList
         centered
         aria-label="Search and Compare tabs"
@@ -23,7 +32,7 @@ const SearchCompareTabs = () => {
       </TabList>
 
       <TabPanel value="search">
-        <Search />
+        <Search setSelectedBike={setSelectedBike} />
       </TabPanel>
       <TabPanel value="compare">
         <EbikeForm />

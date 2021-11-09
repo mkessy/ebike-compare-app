@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../hooks/useGlobalContext";
+import { getEbikeComparer } from "../lib/comparer";
 import { Ebike } from "../types";
 import EbikeCard from "./EbikeCard";
 
@@ -11,9 +12,7 @@ type EbikeCardGroupProps = {
 export const EbikeCardGroup = ({ bikes }: EbikeCardGroupProps) => {
   return (
     <Grid item container direction="row" spacing={2}>
-      <Grid item>
-        <EbikeCard></EbikeCard>
-      </Grid>
+      <Grid item>{bikes && bikes.map((bike) => bike.modelBrand.model)}</Grid>
     </Grid>
   );
 };
@@ -28,9 +27,9 @@ export const EbikeCompareContainer = ({
   const [comparisons, setComparisons] = useState<Ebike[] | null>(null);
 
   useEffect(() => {
-    const comparer = globalContext.comparer;
-    if (comparer && bikeToCompare) setComparisons(comparer(bikeToCompare, 10));
-  }, [globalContext.comparer, bikeToCompare]);
+    const comparer = getEbikeComparer(globalContext.bikes);
+    if (bikeToCompare) setComparisons(comparer(bikeToCompare, 10));
+  }, [globalContext, bikeToCompare]);
 
   return <EbikeCardGroup bikes={comparisons} />;
 };
