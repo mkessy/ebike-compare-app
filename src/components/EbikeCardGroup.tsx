@@ -22,7 +22,7 @@ export const EbikeCardGroup = ({ bikeToCompare }: EbikeCardGroupProps) => {
         comparisons.map((bike) => {
           return (
             <Grid item key={bike.productId}>
-              <EbikeCard bike={bike} />
+              <EbikeCard bike={bike} bikeToCompare={bikeToCompare!} />
             </Grid>
           );
         })}

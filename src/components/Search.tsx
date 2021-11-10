@@ -6,6 +6,8 @@ import {
   List,
   ListItemText,
   ListItemButton,
+  ListItemAvatar,
+  Avatar,
 } from "@mui/material";
 import { Ebike } from "../types";
 
@@ -57,10 +59,18 @@ export const Search = ({ setSelectedBike }: SearchProps) => {
           searchResults.map((bike, index) => {
             return (
               <ListItemButton
+                divider
                 key={bike.productId}
                 onClick={(event) => handleClickSearchItem(event, index)}
                 selected={index === selectedIdx}
               >
+                <ListItemAvatar>
+                  <Avatar
+                    style={{ objectFit: "contain" }}
+                    alt=""
+                    src={`https://greenfinder.de/${bike.imgSrc}`}
+                  />
+                </ListItemAvatar>
                 <ListItemText
                   primary={bike.modelBrand.model}
                   secondary={bike.modelBrand.manufacturer}
