@@ -1,5 +1,6 @@
-import { TextField, Box, MenuItem } from "@mui/material";
-import React from "react";
+import { TextField, Box, MenuItem, Slider, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { SyntheticEbike, DEFAULT_VALUE } from "../types";
 
 const categories = [
   { label: "fitness / racebike", value: 0 },
@@ -22,29 +23,141 @@ const enginePositions = [
   { label: "front/rear-hub", value: 6 },
 ];
 
-export const EbikeForm = () => {
+const priceMarks = [
+  {
+    value: 250,
+    label: "250",
+  },
+  {
+    value: 15000,
+    label: "15,000",
+  },
+];
+const powerMarks = [
+  {
+    value: 25,
+    label: "250",
+  },
+  {
+    value: 10000,
+    label: "10,000",
+  },
+];
+const rangeMarks = [
+  {
+    value: 20,
+    label: "20",
+  },
+  {
+    value: 150,
+    label: "150",
+  },
+];
+const weightMarks = [
+  {
+    value: 10,
+    label: "10",
+  },
+  {
+    value: 250,
+    label: "250",
+  },
+];
+
+type EbikeFormProps = {
+  setSyntheticEbike: (syntheticBike: SyntheticEbike) => void;
+  syntheticEbike: SyntheticEbike;
+};
+
+export const EbikeForm = ({
+  setSyntheticEbike,
+  syntheticEbike,
+}: EbikeFormProps) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSyntheticEbike({
+      ...syntheticEbike,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  /* const handleSliderChange = (event: Event, value: number | number[], _: number) => {
+    return setSyntheticEbike({
+      ...syntheticEbike,
+      [event.target.value]: parseInt(event.target.value),
+    });
+  }; */
+
   return (
     <Box component="form" sx={{ display: "flex", flexDirection: "column" }}>
-      <TextField
-        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        fullWidth
+      <Typography gutterBottom>Price ($)</Typography>
+      <Slider
         id="price"
-        label="Price"
-        variant="standard"
+        aria-label="Price"
+        valueLabelDisplay="auto"
+        min={250}
+        max={15000}
+        marks={priceMarks}
+        onChange={(_, value) => {
+          setSyntheticEbike({
+            ...syntheticEbike,
+            price: value as number,
+          });
+        }}
       />
-      <TextField
-        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        fullWidth
+      <Typography gutterBottom>Power (Watts)</Typography>
+
+      <Slider
         id="power"
-        label="Power"
-        variant="standard"
+        aria-label="Power"
+        valueLabelDisplay="auto"
+        marks={powerMarks}
+        min={25}
+        max={10000}
+        onChange={(_, value) => {
+          setSyntheticEbike({
+            ...syntheticEbike,
+            power: value as number,
+          });
+        }}
+      />
+      <Typography gutterBottom>Range (mi)</Typography>
+      <Slider
+        id="range"
+        aria-label="Range"
+        marks={rangeMarks}
+        valueLabelDisplay="auto"
+        min={20}
+        max={150}
+        onChange={(_, value) => {
+          setSyntheticEbike({
+            ...syntheticEbike,
+            range: value as number,
+          });
+        }}
+      />
+      <Typography gutterBottom>Weight (lbs)</Typography>
+
+      <Slider
+        id="weight"
+        aria-label="Weight"
+        marks={weightMarks}
+        valueLabelDisplay="auto"
+        min={10}
+        max={250}
+        onChange={(_, value) => {
+          setSyntheticEbike({
+            ...syntheticEbike,
+            weight: value as number,
+          });
+        }}
       />
       <TextField
         select
         fullWidth
-        id="category"
+        name="category"
         label="Category"
         variant="standard"
+        onChange={handleSelectChange}
       >
         {categories.map((option) => {
           return (
@@ -57,9 +170,10 @@ export const EbikeForm = () => {
       <TextField
         fullWidth
         select
-        id="enginePosition"
+        name="enginePosition"
         label="Engine Position"
         variant="standard"
+        onChange={handleSelectChange}
       >
         {enginePositions.map((option) => {
           return (
@@ -69,20 +183,6 @@ export const EbikeForm = () => {
           );
         })}
       </TextField>
-      <TextField
-        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        fullWidth
-        id="range"
-        label="Range"
-        variant="standard"
-      />
-      <TextField
-        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        fullWidth
-        id="weight"
-        label="Weight"
-        variant="standard"
-      />
     </Box>
   );
 };

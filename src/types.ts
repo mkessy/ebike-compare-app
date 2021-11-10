@@ -49,12 +49,23 @@ export interface Ebike {
     fenders: string;
   };
 }
-export type Comparer = (bike: Ebike, k: number) => Ebike[];
+export type Comparer = (eBikePoint: number[], k: number) => Ebike[];
 
 export type GlobalContextType = {
   bikes: Ebike[] | null;
   isLoading: boolean;
-  comparer: null | ((bike: Ebike, k: number) => Ebike[]);
+  comparer: null | ((eBikePoint: number[], k: number) => Ebike[]);
+};
+
+export const DEFAULT_VALUE = 999 as const;
+
+export type SyntheticEbike = {
+  price: number;
+  power: number;
+  category: number;
+  enginePosition: number;
+  range: number;
+  weight: number;
 };
 
 const CATEGORY_NUMBER_MAP = {

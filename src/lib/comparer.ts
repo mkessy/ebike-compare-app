@@ -1,10 +1,8 @@
 import createKDTree from "static-kdtree";
-import { Ebike, COMPARISON_PATHS } from "../types";
+import { Ebike, COMPARISON_PATHS, DEFAULT_VALUE } from "../types";
 import { get, isString } from "lodash";
 
-const DEFAULT_VALUE = 999;
-
-export const eBikePoint = (eBike: Ebike): (string | number)[] => {
+export const makeEbikePoint = (eBike: Ebike): number[] => {
   return COMPARISON_PATHS.map((path) => {
     if (isString(path)) return get(eBike, path, DEFAULT_VALUE);
     const [strPath, pathToNumberMap] = Object.entries(path)[0];
@@ -14,10 +12,10 @@ export const eBikePoint = (eBike: Ebike): (string | number)[] => {
 };
 
 export const getEbikeComparer = (bikes: Ebike[]) => {
-  const bikePoints = bikes.map(eBikePoint);
+  const bikePoints = bikes.map(makeEbikePoint);
   console.log("recreacting tree");
   const tree = createKDTree(bikePoints);
-  return (bike: Ebike, k: number): Ebike[] => {
-    return tree.knn(eBikePoint(bike), k).map((index) => bikes[index]);
+  return (eBikePoint: number[], k: number): Ebike[] => {
+    return tree.knn(eBikePoint, k).map((index) => bikes[index]);
   };
 };
