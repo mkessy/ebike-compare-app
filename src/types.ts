@@ -103,11 +103,32 @@ export const STRING_PATH_TO_NUMBER = {
   "engine.enginePosition": ENGINE_POSITION_NUMBER_MAP,
 };
 
-export const FIELD_TITLES: Array<{ field: string; path: string }> = [
-  { field: "Price", path: "generalInfo.priceRrp" },
-  { field: "Power", path: "engine.enginePower" },
-  { field: "Category", path: "generalInfo.category" },
-  { field: "Engine Position", path: "engine.enginePosition" },
-  { field: "Range", path: "engine.range" },
-  { field: "Weight", path: "generalInfo.weight" },
+export const FIELD_TITLES: Array<{
+  field: string;
+  path: string;
+  syntheticPath: string;
+}> = [
+  { field: "Price", path: "generalInfo.priceRrp", syntheticPath: "price" },
+  { field: "Power", path: "engine.enginePower", syntheticPath: "power" },
+  {
+    field: "Category",
+    path: "generalInfo.category",
+    syntheticPath: "category",
+  },
+  {
+    field: "Engine Position",
+    path: "engine.enginePosition",
+    syntheticPath: "enginePosition",
+  },
+  { field: "Range", path: "engine.range", syntheticPath: "range" },
+  { field: "Weight", path: "generalInfo.weight", syntheticPath: "weight" },
+];
+
+export const SYNTHETIC_EBIKE_FIELDS: Array<{ field: string; path: string }> = [
+  { field: "Price", path: "price" },
+  { field: "Power", path: "enginePower" },
+  { field: "Category", path: "category" },
+  { field: "Engine Position", path: "enginePosition" },
+  { field: "Range", path: "range" },
+  { field: "Weight", path: "weight" },
 ];

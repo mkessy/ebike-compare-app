@@ -7,14 +7,16 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-import { Ebike, FIELD_TITLES } from "../types";
+import { Ebike, FIELD_TITLES, SyntheticEbike } from "../types";
 import { get } from "lodash";
 
 import React from "react";
 import { SystemStyleObject } from "@mui/system";
+
 type EbikeCardProps = {
   bike: Ebike;
-  bikeToCompare: Ebike;
+  bikeToCompare?: Ebike;
+  syntheticEbike?: SyntheticEbike;
 };
 
 const listItemStyle: SystemStyleObject = {
@@ -22,14 +24,14 @@ const listItemStyle: SystemStyleObject = {
   flexGrow: 0,
 };
 
-const listItemStyle2: SystemStyleObject = {
+const listItemCompare: SystemStyleObject = {
   textAlign: "right",
   flexGrow: 0,
   flexShrink: 1,
   flexBasis: "50px",
 };
 
-const EbikeCard = ({ bike, bikeToCompare }: EbikeCardProps) => {
+const EbikeCard = ({ bike, bikeToCompare, syntheticEbike }: EbikeCardProps) => {
   return (
     <Card sx={{ width: "200px" }}>
       <CardMedia
@@ -53,18 +55,21 @@ const EbikeCard = ({ bike, bikeToCompare }: EbikeCardProps) => {
         <List dense>
           {FIELD_TITLES.filter(
             (f) => f.field !== "Category" && f.field !== "Engine Position"
-          ).map((field) => {
+          ).map((field, i) => {
             return (
-              <ListItem dense disablePadding alignItems="flex-start">
+              <ListItem key={i} dense disablePadding alignItems="flex-start">
                 <ListItemText secondary={field.field}></ListItemText>
                 <ListItemText
                   sx={listItemStyle}
                   primary={get(bike, field.path)}
                 ></ListItemText>
                 <ListItemText
-                  sx={listItemStyle2}
+                  sx={listItemCompare}
                   primary={
-                    get(bikeToCompare, field.path) - get(bike, field.path)
+                    bikeToCompare
+                      ? get(bikeToCompare, field.path) - get(bike, field.path)
+                      : get(syntheticEbike, field.syntheticPath) -
+                        get(bike, field.path)
                   }
                 ></ListItemText>
               </ListItem>

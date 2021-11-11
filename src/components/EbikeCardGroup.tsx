@@ -32,7 +32,11 @@ export const EbikeCardGroup = ({
         comparisons.map((bike) => {
           return (
             <Grid item key={bike.productId}>
-              <EbikeCard bike={bike} bikeToCompare={bikeToCompare!} />
+              {bikeToCompare ? (
+                <EbikeCard bike={bike} bikeToCompare={bikeToCompare} />
+              ) : (
+                <EbikeCard bike={bike} syntheticEbike={syntheticEbike} />
+              )}
             </Grid>
           );
         })}

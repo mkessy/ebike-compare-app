@@ -53,7 +53,12 @@ export const Search = ({ setSelectedBike }: SearchProps) => {
 
   return (
     <Box>
-      <TextField variant="filled" fullWidth onChange={handleSearch} />
+      <TextField
+        variant="filled"
+        fullWidth
+        value={search}
+        onChange={handleSearch}
+      />
       <List dense={true}>
         {searchResults &&
           searchResults.map((bike, index) => {

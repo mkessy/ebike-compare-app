@@ -36,7 +36,7 @@ const priceMarks = [
 const powerMarks = [
   {
     value: 25,
-    label: "250",
+    label: "25",
   },
   {
     value: 10000,
@@ -94,10 +94,11 @@ export const EbikeForm = ({
         id="price"
         aria-label="Price"
         valueLabelDisplay="auto"
+        value={syntheticEbike ? syntheticEbike.price : 2500}
         min={250}
         max={15000}
         marks={priceMarks}
-        onChange={(_, value) => {
+        onChangeCommitted={(_, value) => {
           setSyntheticEbike({
             ...syntheticEbike,
             price: value as number,
@@ -110,10 +111,11 @@ export const EbikeForm = ({
         id="power"
         aria-label="Power"
         valueLabelDisplay="auto"
+        value={syntheticEbike ? syntheticEbike.power : 250}
         marks={powerMarks}
         min={25}
         max={10000}
-        onChange={(_, value) => {
+        onChangeCommitted={(_, value) => {
           setSyntheticEbike({
             ...syntheticEbike,
             power: value as number,
@@ -125,10 +127,11 @@ export const EbikeForm = ({
         id="range"
         aria-label="Range"
         marks={rangeMarks}
+        value={syntheticEbike ? syntheticEbike.range : 60}
         valueLabelDisplay="auto"
         min={20}
         max={150}
-        onChange={(_, value) => {
+        onChangeCommitted={(_, value) => {
           setSyntheticEbike({
             ...syntheticEbike,
             range: value as number,
@@ -144,7 +147,7 @@ export const EbikeForm = ({
         valueLabelDisplay="auto"
         min={10}
         max={250}
-        onChange={(_, value) => {
+        onChangeCommitted={(_, value) => {
           setSyntheticEbike({
             ...syntheticEbike,
             weight: value as number,
