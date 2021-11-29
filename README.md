@@ -1,4 +1,5 @@
-#E-bike Comparison Tool
+
+# E-bike Comparison Tool
 
 A small React App that uses a [static KD-Tree](https://github.com/mikolalysenko/static-kdtree) to do a K-nearest neighbors search on scraped e-bike data.
 
