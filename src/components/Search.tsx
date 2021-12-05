@@ -8,12 +8,15 @@ import {
   ListItemButton,
   ListItemAvatar,
   Avatar,
+  Typography,
 } from "@mui/material";
 import { Ebike } from "../types";
 
 type SearchProps = {
   setSelectedBike: (bike: Ebike | null) => void;
 };
+
+const NUM_RESULTS = 10;
 
 export const Search = ({ setSelectedBike }: SearchProps) => {
   const [search, setSearch] = useState("");
@@ -33,7 +36,7 @@ export const Search = ({ setSelectedBike }: SearchProps) => {
             model.toLowerCase().includes(search.toLowerCase())
           );
         })
-        .slice(0, 10)
+        .slice(0, NUM_RESULTS)
     );
   }, [bikes, search]);
 
@@ -59,6 +62,14 @@ export const Search = ({ setSelectedBike }: SearchProps) => {
         value={search}
         onChange={handleSearch}
       />
+      <Typography
+        mt={2}
+        variant="subtitle2"
+        component="div"
+        color="text.secondary"
+      >
+        s{`Displaying ${NUM_RESULTS} items of ${bikes!.length}`}
+      </Typography>
       <List dense={true}>
         {searchResults &&
           searchResults.map((bike, index) => {

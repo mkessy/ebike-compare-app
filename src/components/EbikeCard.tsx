@@ -58,7 +58,9 @@ const EbikeCard = ({ bike, bikeToCompare, syntheticEbike }: EbikeCardProps) => {
           ).map((field, i) => {
             return (
               <ListItem key={i} dense disablePadding alignItems="flex-start">
-                <ListItemText secondary={field.field}></ListItemText>
+                <ListItemText
+                  secondary={field.field + ` (${field!.unit})`}
+                ></ListItemText>
                 <ListItemText
                   sx={listItemStyle}
                   primary={get(bike, field.path)}

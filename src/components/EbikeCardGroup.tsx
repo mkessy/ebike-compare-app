@@ -23,7 +23,7 @@ export const EbikeCardGroup = ({
     : null;
 
   const comparisons = useMemo(() => {
-    return comparer && eBikePoint && comparer(eBikePoint, 10);
+    return comparer && eBikePoint && comparer(eBikePoint, 12);
   }, [comparer, eBikePoint]);
 
   return (

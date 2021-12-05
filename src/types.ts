@@ -107,21 +107,39 @@ export const FIELD_TITLES: Array<{
   field: string;
   path: string;
   syntheticPath: string;
+  unit: string | null;
 }> = [
-  { field: "Price", path: "generalInfo.priceRrp", syntheticPath: "price" },
-  { field: "Power", path: "engine.enginePower", syntheticPath: "power" },
+  {
+    field: "Price",
+    path: "generalInfo.priceRrp",
+    syntheticPath: "price",
+    unit: "$",
+  },
+  {
+    field: "Power",
+    path: "engine.enginePower",
+    syntheticPath: "power",
+    unit: "W",
+  },
   {
     field: "Category",
     path: "generalInfo.category",
     syntheticPath: "category",
+    unit: null,
   },
   {
     field: "Engine Position",
     path: "engine.enginePosition",
     syntheticPath: "enginePosition",
+    unit: null,
   },
-  { field: "Range", path: "engine.range", syntheticPath: "range" },
-  { field: "Weight", path: "generalInfo.weight", syntheticPath: "weight" },
+  { field: "Range", path: "engine.range", syntheticPath: "range", unit: "mi." },
+  {
+    field: "Weight",
+    path: "generalInfo.weight",
+    syntheticPath: "weight",
+    unit: "lbs",
+  },
 ];
 
 export const SYNTHETIC_EBIKE_FIELDS: Array<{ field: string; path: string }> = [
