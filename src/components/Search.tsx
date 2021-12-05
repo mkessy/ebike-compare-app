@@ -68,7 +68,7 @@ export const Search = ({ setSelectedBike }: SearchProps) => {
         component="div"
         color="text.secondary"
       >
-        s{`Displaying ${NUM_RESULTS} items of ${bikes!.length}`}
+        {`Displaying ${NUM_RESULTS} items of ${bikes!.length}`}
       </Typography>
       <List dense={true}>
         {searchResults &&
